@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . 'libraries/REST_Controller.php';
 
@@ -24,7 +25,8 @@ class Auth extends REST_Controller
             return;
         }
         $response = [
-            'error' => 'Unauthorized'
+            'status' => REST_Controller::HTTP_UNAUTHORIZED,
+            'message' => 'Unauthorized',
         ];
         $this->set_response($response, REST_Controller::HTTP_UNAUTHORIZED);
     }

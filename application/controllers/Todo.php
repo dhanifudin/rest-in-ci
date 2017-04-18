@@ -1,4 +1,5 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . 'libraries/REST_Controller.php';
 
@@ -26,7 +27,11 @@ class Todo extends REST_Controller
                 return;
             }
         }
-        $this->set_response('Forbidden', REST_Controller::HTTP_FORBIDDEN);
+        $response = [
+            'status' => REST_Controller::HTTP_FORBIDDEN,
+            'message' => 'Forbidden',
+        ];
+        $this->set_response($response, REST_Controller::HTTP_FORBIDDEN);
     }
 
     public function index_post()
@@ -44,9 +49,17 @@ class Todo extends REST_Controller
                     return;
                 }
             }
-            $this->set_response('Unauthorized', REST_Controller::HTTP_UNAUTHORIZED);
+            $response = [
+                'status' => REST_Controller::HTTP_UNAUTHORIZED,
+                'message' => 'Unauthorized',
+            ];
+            $this->set_response($response, REST_Controller::HTTP_UNAUTHORIZED);
             return;
         }
-        $this->set_response('Forbidden', REST_Controller::HTTP_FORBIDDEN);
+        $response = [
+            'status' => REST_Controller::HTTP_FORBIDDEN,
+            'message' => 'Forbidden',
+        ];
+        $this->set_response($response, REST_Controller::HTTP_FORBIDDEN);
     }
 }
