@@ -1,8 +1,7 @@
 <?php
 
-require_once APPPATH . 'libraries/JWT.php';
-
 use \Firebase\JWT\JWT;
+use \Firebase\JWT\SignatureInvalidException;
 
 class Authorization
 {
@@ -11,7 +10,12 @@ class Authorization
         $CI =& get_instance();
         $key = $CI->config->item('jwt_key');
         $algorithm = $CI->config->item('jwt_algorithm');
-        return JWT::decode($token, $key, array($algorithm));
+        try {
+            $decoded = JWT::decode($token, $key, array($algorithm));
+            return $decoded;
+        } catch (Exception $e){
+            return false;
+        }
     }
 
     public static function generateToken($data)

@@ -1,0 +1,14 @@
+{
+    "name": "dhanifudin/rest-in-ci",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dian Hanifudin Subhi",
+            "email": "dhanifudin@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^5.0"
+    }
+}
